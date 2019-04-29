@@ -50,6 +50,7 @@ def button(x,y,w,h,ic,ac,action=None,msg=None,img=None):
 		if x+w > mouse[0] > x and y+h > mouse[1] > y and click[0] == 1 and action != None:
 			action()
 
+clock = pygame.time.Clock()
 
 def startPage():
 	global Ext
@@ -68,4 +69,5 @@ def startPage():
 		screen.blit(backgroundImage,(0,0))
 		button(220,200,260,100,(244, 191, 76),(255, 211, 86),start_game,"play");
 		pygame.display.flip()
+		clock.tick(60)
 	return Ext

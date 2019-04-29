@@ -6,9 +6,10 @@ class Obstcale:
 	def __init__(self,x,y):
 		self.x = x
 		self.y = y
+		self.scoreAdded = False
 
 def play_game():
-	global Ext, birdImage,up_obstcale,down_obstcale,pass_sound,gameover_sound
+	global Ext, birdImage,up_obstcale,down_obstcale,pass_sound,gameover_sound,clock
 	bird_height = birdImage.get_height()
 	bird_width = birdImage.get_width()
 	x_size = 70
@@ -69,8 +70,6 @@ def play_game():
 	obspeed = 0
 	score = 0
 
-	clock = pygame.time.Clock()
-
 	while (not Ext) and (not done):
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
@@ -83,7 +82,8 @@ def play_game():
 			if (not gameEnd) and event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_SPACE:
 					y_speed = -6
-					obspeed = 2.5
+					if obspeed == 0:
+						obspeed = 2.5
 					
 
 			if (not gameEnd) and event.type == pygame.KEYUP:
@@ -110,12 +110,14 @@ def play_game():
 				if obstacle.x < -80:
 					obstacle.x = 700
 					obstacle.y = randint(-y_size+diff,-diff)
+					obstacle.scoreAdded = False
 
-				if x > obstacle.x and x < obstacle.x+3:
+				if x > obstacle.x and not obstacle.scoreAdded:
+					obstacle.scoreAdded = True
 					score += 1
 					pass_sound.play()
 					if score%5 == 0:
-						obspeed += 0.5
+						obspeed += 0.2
 						if diff > 0:
 							diff -= 20
 						
