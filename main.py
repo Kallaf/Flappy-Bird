@@ -60,7 +60,7 @@ def play_game():
 
 	obstacles = []
 
-	diff = 140
+	diff = 160
 
 	for i in range(4):
 		obstacles.append(Obstcale(700+i*200,randint(-y_size+diff,-diff)))
