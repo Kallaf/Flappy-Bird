@@ -46,7 +46,7 @@ def play_game():
 
 
 	def collision(obstacle):
-		if  (x+bird_width > obstacle.x and y < obstacle.y+y_size and x-15 < x_size+obstacle.x) or (x+bird_width > obstacle.x and y+bird_height > obstacle.y+y_size+space and x-15 < x_size+obstacle.x):
+		if  (x+bird_width > obstacle.x and y < obstacle.y+y_size and x < x_size+obstacle.x) or (x+bird_width > obstacle.x and y+bird_height > obstacle.y+y_size+space and x < x_size+obstacle.x):
 			return True
 		return False
 				
