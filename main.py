@@ -10,15 +10,18 @@ class Obstcale:
 
 def play_game():
 	global Ext, birdImage,up_obstcale,down_obstcale,pass_sound,gameover_sound,clock
-	bird_height = birdImage.get_height()
-	bird_width = birdImage.get_width()
+	bird_height = birdImage[0].get_height()
+	bird_width = birdImage[0].get_width()
 	x_size = 70
 	y_size = 350
 	up_obstcale = pygame.transform.scale(up_obstcale, (70,y_size))
 	down_obstcale = pygame.transform.scale(down_obstcale, (70,y_size))
 	gameEnd = False
-	def ball(x,y):
-		screen.blit(birdImage, (x,y))
+	def bird(x,y):
+		global birdChange
+		birdChange += 1
+		birdChange %= 30
+		screen.blit(birdImage[birdChange//10], (x,y))
 
 	def gameover():
 		font = pygame.font.SysFont(None,75)
@@ -61,7 +64,7 @@ def play_game():
 
 	obstacles = []
 
-	diff = 160
+	diff = 140
 
 	for i in range(4):
 		obstacles.append(Obstcale(700+i*200,randint(-y_size+diff,-diff)))
@@ -81,14 +84,14 @@ def play_game():
 
 			if (not gameEnd) and event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_SPACE:
-					y_speed = -6
+					y_speed = -8
 					if obspeed == 0:
 						obspeed = 2.5
 					
 
 			if (not gameEnd) and event.type == pygame.KEYUP:
 				if event.key == pygame.K_SPACE:
-					y_speed = 3
+					y_speed = 4
 
 
 		if (not gameEnd):
@@ -118,6 +121,7 @@ def play_game():
 					pass_sound.play()
 					if score%5 == 0:
 						obspeed += 0.2
+					if score%10 == 0:
 						if diff > 0:
 							diff -= 20
 						
@@ -128,7 +132,7 @@ def play_game():
 		screen.blit(backgroundImage,(0,0))
 		for obstacle in obstacles:
 			draw_obstacle(obstacle)
-		ball(x,y)
+		bird(x,y)
 		Score(score)
 		if gameEnd:
 			gameover()

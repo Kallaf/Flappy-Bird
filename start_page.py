@@ -10,7 +10,11 @@ pygame.init()
 pygame.mixer.pre_init(44100,16,2,4096)
 
 backgroundImage = pygame.image.load("assets/images/background.png")
-birdImage = pygame.image.load("assets/images/bird.png")
+birdImage = []
+birdImage.append(pygame.image.load("assets/images/bird0.png"))
+birdImage.append(pygame.image.load("assets/images/bird1.png"))
+birdImage.append(pygame.image.load("assets/images/bird2.png"))
+birdChange = 0
 up_obstcale = pygame.image.load("assets/images/up_column.png")
 down_obstcale = pygame.image.load("assets/images/down_column.png")
 
