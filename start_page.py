@@ -15,8 +15,8 @@ birdImage.append(pygame.image.load("assets/images/bird0.png"))
 birdImage.append(pygame.image.load("assets/images/bird1.png"))
 birdImage.append(pygame.image.load("assets/images/bird2.png"))
 birdChange = 0
-up_obstcale = pygame.image.load("assets/images/up_column.png")
 down_obstcale = pygame.image.load("assets/images/down_column.png")
+up_obstcale = pygame.transform.flip(down_obstcale,False,True)
 
 pass_sound = pygame.mixer.Sound("assets/sounds/pass.wav")
 gameover_sound = pygame.mixer.Sound("assets/sounds/gameover.wav")
